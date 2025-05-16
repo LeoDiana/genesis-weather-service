@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Підписка на прогноз погоди</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #f2f2f2;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        form {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+        input, select, button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 5 5-5H0z' fill='%23999'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 10px 6px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .success, .error {
+            margin-top: 15px;
+            text-align: center;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+        #loader {
+            margin-top: 10px;
+            text-align: center;
+            color: #333;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<form id="subscription-form">
+    <h2>Підписка на прогноз погоди</h2>
+    <input type="email" name="email" placeholder="Ваш email" required />
+    <input type="text" name="city" placeholder="Місто" required />
+    <select name="frequency" required>
+        <option value="">Частота розсилки</option>
+        <option value="hourly">Щогодини</option>
+        <option value="daily">Щодня</option>
+    </select>
+    <button type="submit" id="submit-btn">Підписатися</button>
+    <div class="loader" id="loader" style="display:none;">⏳ Надсилаємо...</div>
+    <div class="success" id="success" style="display:none;">✅ Підписка оформлена! Перевірте пошту.</div>
+    <div class="error" id="error" style="display:none;">❌ Помилка при підписці.</div>
+</form>
+
+<script>
+    const form = document.getElementById("subscription-form");
+    const submitBtn = document.getElementById("submit-btn");
+    const successMsg = document.getElementById("success");
+    const errorMsg = document.getElementById("error");
+    const loader = document.getElementById("loader");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        submitBtn.disabled = true;
+        loader.style.display = "block";
+        successMsg.style.display = "none";
+        errorMsg.style.display = "none";
+
+        const data = {
+            email: form.email.value,
+            city: form.city.value,
+            frequency: form.frequency.value,
+        };
+
+        try {
+            const res = await fetch("/api/subscribe", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
+
+            if (res.ok) {
+                successMsg.style.display = "block";
+                form.reset();
+            } else {
+                throw new Error();
+            }
+        } catch (err) {
+            errorMsg.style.display = "block";
+        } finally {
+            loader.style.display = "none";
+            submitBtn.disabled = false;
+        }
+    });
+</script>
+</body>
+</html>
