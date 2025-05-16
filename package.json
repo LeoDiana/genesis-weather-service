@@ -8,7 +8,8 @@
     "start": "ts-node src/index.ts",
     "dev": "dotenv -e .env -- nodemon src/index.ts",
     "docker:dev": "dotenv -e .env.docker -- node dist/index.js",
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint src --ext .ts"
   },
   "keywords": [],
   "author": "",
@@ -25,15 +26,21 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.27.0",
     "@types/axios": "^0.14.4",
     "@types/express": "^5.0.1",
     "@types/node": "^22.15.17",
     "@types/nodemailer": "^6.4.17",
     "@types/swagger-ui-express": "^4.1.8",
     "@types/yamljs": "^0.2.34",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
     "dotenv-cli": "^8.0.0",
+    "eslint": "^9.27.0",
+    "globals": "^16.1.0",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.1"
   }
 }
