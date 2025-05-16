@@ -5,9 +5,12 @@ import path from "path";
 import weatherRoutes from "./routes/weather.routes";
 import subscriptionRoutes from "./routes/subscription.routes";
 import {config} from "./config";
+import {startEmailScheduler} from "./scheduler/emailScheduler";
 
 const app = express();
 const port = config.port || 4000;
+
+startEmailScheduler();
 
 const swaggerDocument = YAML.load(path.join(__dirname, "../swagger.yaml"));
 
