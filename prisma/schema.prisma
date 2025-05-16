@@ -20,6 +20,6 @@ model Subscription {
   city      String
   frequency String   // "hourly" | "daily"
   confirmed Boolean  @default(false)
-  token     String   @unique
+  token     String?   @unique
   createdAt DateTime @default(now())
 }
