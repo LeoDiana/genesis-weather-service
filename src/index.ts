@@ -3,6 +3,7 @@ import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
 import path from "path";
 import weatherRoutes from "./routes/weather.routes";
+import subscriptionRoutes from "./routes/subscription.routes";
 import {config} from "./config";
 
 const app = express();
@@ -12,7 +13,8 @@ const swaggerDocument = YAML.load(path.join(__dirname, "../swagger.yaml"));
 
 app.use(express.json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use("/api", weatherRoutes);
+// app.use("/api", weatherRoutes);
+app.use("/api", subscriptionRoutes);
 
 app.get("/", (_req, res) => {
     res.send("Check /api-docs");

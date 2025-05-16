@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15
+    ports:
+      - "5555:5555"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: weather
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    command: ["postgres", "-p", "5555"]
+
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    env_file:
+      - .env.docker
+
+volumes:
+  pgdata:

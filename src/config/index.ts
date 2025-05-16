@@ -4,7 +4,8 @@ dotenv.config();
 
 export const config = {
     weatherApiKey: process.env.WEATHER_API_KEY || "",
-    port: process.env.PORT || 4000,
+    port: process.env.APP_PORT || 4000,
+    smtpUser: process.env.SMTP_USER || "",
+    smtpPass: process.env.SMTP_PASS || "",
+    baseUrl: process.env.BASE_URL || "localhost"
 };
-
-console.log(process.env.WEATHER_API_KEY)
