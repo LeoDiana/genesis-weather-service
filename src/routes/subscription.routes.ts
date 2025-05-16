@@ -1,7 +1,7 @@
 import express from "express";
 import { subscribe } from "../controllers/subscription.controller";
-import {confirmSubscription} from "../controllers/confirm.controller";
-import {unsubscribe} from "../controllers/unsubscribe.controller";
+import { confirmSubscription } from "../controllers/confirm.controller";
+import { unsubscribe } from "../controllers/unsubscribe.controller";
 
 const router = express.Router();
 
