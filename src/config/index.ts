@@ -8,4 +8,5 @@ export const config = {
   smtpUser: process.env.SMTP_USER || "",
   smtpPass: process.env.SMTP_PASS || "",
   baseUrl: process.env.BASE_URL || "localhost",
+  weatherApiBaseUrl: process.env.WEATHER_API_BASE_URL || "http://api.weatherapi.com/v1"
 };

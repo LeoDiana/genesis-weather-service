@@ -5,5 +5,6 @@ declare namespace NodeJS {
     SMTP_USER: string;
     SMTP_PASS: string;
     BASE_URL: string;
+    WEATHER_API_BASE_URL: string;
   }
 }
