@@ -28,6 +28,7 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/swagger.yaml ./swagger.yaml
+COPY public ./public
 
 # Copy custom entrypoint script
 COPY scripts/entrypoint.sh ./entrypoint.sh

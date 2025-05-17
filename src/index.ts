@@ -23,7 +23,9 @@ app.use("/api", weatherRoutes);
 app.use("/api", subscriptionRoutes);
 
 app.get("/", (_req, res) => {
-  res.send("Check <a href='/api-docs'>/api-docs</a> or <a href='/subscribe.html'>/subscribe.html</a>");
+  res.send(
+    "Check <a href='/api-docs'>/api-docs</a> or <a href='/subscribe.html'>/subscribe.html</a>",
+  );
 });
 
 app.listen(port, () => {

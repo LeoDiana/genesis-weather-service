@@ -1,17 +1,17 @@
 import nodemailer from "nodemailer";
-import { fetchWeather } from "../services/weather.service"; // you already have this
+import { fetchWeather } from "../services/weather.service";
+import { config } from "../config";
 
 export async function sendWeatherEmail(to: string, city: string) {
   const weather = await fetchWeather(city);
 
-  const testAccount = await nodemailer.createTestAccount();
   const transporter = nodemailer.createTransport({
-    host: testAccount.smtp.host,
-    port: testAccount.smtp.port,
-    secure: testAccount.smtp.secure,
+    host: "in-v3.mailjet.com",
+    port: 587,
+    secure: false,
     auth: {
-      user: testAccount.user,
-      pass: testAccount.pass,
+      user: config.smtpUser,
+      pass: config.smtpPass,
     },
   });
 
