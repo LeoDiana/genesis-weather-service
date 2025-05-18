@@ -1,8 +1,12 @@
 #!/bin/sh
 
-echo "⏳ Waiting for PostgreSQL at $DATABASE_URL..."
+# Extract host and port from DATABASE_URL
+DB_HOST=$(echo "$DATABASE_URL" | sed -E 's/^.*@([^:/]+):[0-9]+\/.*$/\1/')
+DB_PORT=$(echo "$DATABASE_URL" | sed -E 's/^.*:([0-9]+)\/.*$/\1/')
 
-until nc -z db 5432; do
+echo "⏳ Waiting for PostgreSQL at $DB_HOST:$DB_PORT..."
+
+until nc -z "$DB_HOST" "$DB_PORT"; do
   echo "Still waiting..."
   sleep 1
 done
