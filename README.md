@@ -1,7 +1,10 @@
 # 📬 Genesis Weather Service
 
 A Node.js API for subscribing to weather updates via email. Users can subscribe with their city and frequency (hourly or daily), confirm via email, and unsubscribe anytime.  
-Weather data is provided by WeatherAPI.com
+Weather data is provided by WeatherAPI.com  
+
+Demo:
+genesis-weather-service.onrender.com/
 
 
 ## 🚀 Features
