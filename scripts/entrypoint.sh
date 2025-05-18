@@ -1,14 +1,10 @@
 #!/bin/sh
 
-# Extract host and port from DATABASE_URL using regex
-DB_HOST=$(echo "$DATABASE_URL" | sed -E 's|.*@([^:/]+):[0-9]+/.*|\1|')
-DB_PORT=$(echo "$DATABASE_URL" | sed -E 's|.*:([0-9]+)/.*|\1|')
-
 echo "⏳ Waiting for PostgreSQL at $DB_HOST:$DB_PORT..."
 
 until nc -z "$DB_HOST" "$DB_PORT"; do
   echo "Still waiting..."
-  sleep 1
+  sleep 2
 done
 
 echo "✅ DB is up. Running migrations..."
