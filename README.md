@@ -13,7 +13,7 @@ genesis-weather-service.onrender.com/
 •	Email confirmation system  
 •	Unsubscribe via token  
 •	Cron-based email scheduler  
-•	Swagger API docs  
+•	Swagger API docs available at /api-docs route
 •	Dockerized PostgreSQL + app  
 •	ESLint + Prettier for code quality  
 
